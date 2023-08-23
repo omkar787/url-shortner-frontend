@@ -1,4 +1,3 @@
-import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import { useLayoutEffect, useRef, useState } from "react";
 import { useParams, redirect } from "react-router-dom";
@@ -22,7 +21,7 @@ const App = () => {
           handleSubmit();
         }}
       >
-        <TextField
+        {/* <TextField
           value={link}
           onChange={(e) => setLink(() => e.target.value)}
           required
@@ -30,7 +29,7 @@ const App = () => {
         ></TextField>
         <Button type="submit" variant="outlined">
           Shorten
-        </Button>
+        </Button> */}
       </form>
     </div>
   );
