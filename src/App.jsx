@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { useParams, redirect } from "react-router-dom";
+import { useParams, redirect, useLoaderData } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { FaCopy } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
@@ -12,8 +12,10 @@ const App = () => {
   const [allLinks, setAllLinks] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [currLink, setCurrLink] = useState(null);
+  const user = useLoaderData();
 
   useEffect(() => {
+    console.log("User", user);
     getAllLinks();
   }, []);
 
@@ -123,7 +125,7 @@ const App = () => {
         >
           URL SHORTNER
         </div>
-        <div>User</div>
+        <div>{user.name}</div>
       </div>
       <form
         className="flex items-center justify-center gap-10 bg-slate-500 p-5"

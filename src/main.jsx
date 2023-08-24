@@ -20,10 +20,27 @@ const checkIfAuthorised = async () => {
       },
     });
     console.log(res);
-    return null;
+    return res.data.user;
   } catch (error) {
     console.log(error);
+    localStorage.clear();
     return redirect("/login");
+  }
+};
+
+const loginLoader = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api`, {
+      headers: {
+        "auth-token": token,
+      },
+    });
+    return redirect("/");
+  } catch (error) {
+    localStorage.clear();
+    console.log(error);
+    return null;
   }
 };
 
@@ -36,6 +53,7 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+    loader: loginLoader,
   },
   {
     path: "/s/:code",
