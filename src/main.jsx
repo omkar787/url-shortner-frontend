@@ -10,6 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { redirect } from "react-router-dom";
 import axios from "axios";
 import Redirect from "./pages/Redirect.jsx";
+import Register from "./pages/Register.jsx";
+import "react-responsive-modal/styles.css";
 
 const checkIfAuthorised = async () => {
   try {
@@ -40,6 +42,7 @@ const loginLoader = async () => {
   } catch (error) {
     localStorage.clear();
     console.log(error);
+    // return redirect("/login");
     return null;
   }
 };
@@ -53,6 +56,11 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+    loader: loginLoader,
+  },
+  {
+    path: "/register",
+    element: <Register />,
     loader: loginLoader,
   },
   {

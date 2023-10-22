@@ -1,28 +1,30 @@
 import axios from "axios";
 import { useRef } from "react";
 import { toast } from "react-toastify";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const nameRef = useRef(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const name = nameRef.current.value;
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
 
       const result = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,
-        { email, password }
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/register`,
+        { name, email, password }
       );
-
-      if (result.data.token) {
-        localStorage.setItem("token", result.data.token);
-        return navigate("/");
-      }
+      toast("User register successfully!");
+      //   return navigate("/login");
+      //   if (result.data.token) {
+      //     localStorage.setItem("token", result.data.token);
+      //   }
     } catch (error) {
       console.log(error);
       toast(error.response.data.msg);
@@ -42,6 +44,16 @@ const Login = () => {
           onSubmit={handleSubmit}
           className="bg-slate-500 p-10 rounded-lg flex flex-col justify-center items-center gap-5"
         >
+          <div>
+            <input
+              className="rounded-sm p-2 outline-none"
+              type="name"
+              name="name"
+              id="name"
+              placeholder="Name"
+              ref={nameRef}
+            />
+          </div>
           <div>
             <input
               className="rounded-sm p-2 outline-none"
@@ -68,11 +80,11 @@ const Login = () => {
               className="bg-amber-300 p-1 px-5 rounded-full "
               type="submit"
             >
-              Login
+              Register
             </button>
           </div>
           <div>
-            <Link to="/register">Register</Link>
+            <Link to="/login">Login</Link>
           </div>
         </form>
       </div>
@@ -80,4 +92,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
