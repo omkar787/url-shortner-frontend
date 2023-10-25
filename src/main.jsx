@@ -10,8 +10,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { redirect } from "react-router-dom";
 import axios from "axios";
 import Redirect from "./pages/Redirect.jsx";
-import Register from "./pages/Register.jsx";
 import "react-responsive-modal/styles.css";
+import { ChakraProvider } from "@chakra-ui/react";
+import SignupCard from "./Signup.jsx";
+import LoginCard from "./Login.jsx";
 
 const checkIfAuthorised = async () => {
   try {
@@ -55,12 +57,14 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login />,
+    // element: <Login />,
+    element: <LoginCard />,
     loader: loginLoader,
   },
   {
     path: "/register",
-    element: <Register />,
+    // element: <Register />,
+    element: <SignupCard />,
     loader: loginLoader,
   },
   {
@@ -77,7 +81,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     {/* <App /> */}
-    <RouterProvider router={router} />
-    <ToastContainer />
+    <ChakraProvider>
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </ChakraProvider>
   </React.StrictMode>
 );

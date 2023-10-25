@@ -8,6 +8,7 @@ import { TbQrcode } from "react-icons/tb";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 import QrCodeModal from "./QrCodeModal.jsx";
+import { Select } from "@chakra-ui/react";
 
 const App = () => {
   const linkRef = useRef(null);
@@ -96,6 +97,7 @@ const App = () => {
       console.log(res.data);
     } catch (error) {
       console.log(error);
+      toast(error.response.data.msg);
     }
   };
 
@@ -134,6 +136,7 @@ const App = () => {
       });
     } catch (error) {
       console.log(error);
+      toast(error.response.data.msg);
     }
   };
 
@@ -193,7 +196,13 @@ const App = () => {
           />
         </div>
         <div>
-          <select ref={selectedCategory} name="category" id="category">
+          <Select
+            bg={"white"}
+            ref={selectedCategory}
+            name="category"
+            id="category"
+            placeholder="Select Category"
+          >
             {categories &&
               categories.map((e) => {
                 return (
@@ -202,7 +211,7 @@ const App = () => {
                   </option>
                 );
               })}
-          </select>
+          </Select>
         </div>
         <div>
           <button className="bg-orange-300 rounded-md px-5 py-1" type="submit">
