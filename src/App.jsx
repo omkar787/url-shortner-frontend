@@ -58,7 +58,7 @@ const App = () => {
           headers: {
             "auth-token": localStorage.getItem("token"),
           },
-        }
+        },
       );
       setAllLinks((links) => {
         return links.map((e) => {
@@ -89,7 +89,7 @@ const App = () => {
           headers: {
             "auth-token": localStorage.getItem("token"),
           },
-        }
+        },
       );
 
       setAllLinks((data) => [...data, res.data]);
@@ -128,7 +128,7 @@ const App = () => {
           headers: {
             "auth-token": localStorage.getItem("token"),
           },
-        }
+        },
       );
       toast(res.data.msg);
       setAllLinks((links) => {
@@ -149,7 +149,7 @@ const App = () => {
           headers: {
             "auth-token": token,
           },
-        }
+        },
       );
       console.log(result.data);
       setCategories(() => result.data.categories);
@@ -278,7 +278,7 @@ const App = () => {
                         copy(
                           `${import.meta.env.VITE_FRONTEND_URL}/s/${
                             data.short_url_code
-                          }`
+                          }`,
                         );
                         toast("Copied to clipboard!");
                       }}
@@ -294,7 +294,7 @@ const App = () => {
                       fontSize: "12px",
                     }}
                     className={`${getColor(
-                      data.category.category
+                      data.category.category,
                     )} p-1 rounded-full `}
                   >
                     {data.category.category}
@@ -329,7 +329,7 @@ const App = () => {
                     width: "fit-content",
                   }}
                   className={`${getColor(
-                    data.category.category
+                    data.category.category,
                   )} p-1 px-2 font-mono font-bold rounded-full `}
                 >
                   {data.category.category}
@@ -373,7 +373,7 @@ const App = () => {
                           copy(
                             `${import.meta.env.VITE_FRONTEND_URL}/s/${
                               data.short_url_code
-                            }`
+                            }`,
                           );
                           toast("Copied to clipboard!");
                         }}
@@ -390,7 +390,7 @@ const App = () => {
                         setQrCodeData(
                           `${import.meta.env.VITE_FRONTEND_URL}/s/${
                             data.short_url_code
-                          }`
+                          }`,
                         );
 
                         // setEditMode(data._id);
