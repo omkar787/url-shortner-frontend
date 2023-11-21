@@ -72,7 +72,7 @@ const router = createBrowserRouter([
     element: <Redirect />,
     loader: ({ params }) => {
       return redirect(
-        `${import.meta.env.VITE_BACKEND_URL}/redirect/${params.code}`
+        `${import.meta.env.VITE_BACKEND_URL}/redirect/${params.code}`,
       );
     },
   },
@@ -85,5 +85,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <RouterProvider router={router} />
       <ToastContainer />
     </ChakraProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

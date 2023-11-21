@@ -36,7 +36,7 @@ export default function SignupCard() {
       const password = e.target.elements["password"].value;
       const result = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/auth/register`,
-        { name, email, password }
+        { name, email, password },
       );
       toast("User register successfully!");
       //   return navigate("/login");

@@ -49,7 +49,7 @@ export default function LoginCard() {
 
       const result = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,
-        { email, password }
+        { email, password },
       );
 
       if (result.data.token) {
